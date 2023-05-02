@@ -1,26 +1,25 @@
-import {React, useEffect} from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import style from './greeting.module.css'
-import { greetingsRequest } from './greetingReducer.js'
-
+import { React, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import style from './greeting.module.css';
+import { greetingsRequest } from './greetingReducer';
 
 export default function Greeting() {
   const dispatch = useDispatch();
-  const { greeting, loading, error} = useSelector(state => state.greeting)
+  const { greeting, loading, error } = useSelector((state) => state.greeting);
   useEffect(() => {
-    dispatch(greetingsRequest())
-  }, [dispatch])
+    dispatch(greetingsRequest());
+  }, [dispatch]);
 
   const handler = () => {
-    dispatch(greetingsRequest())
-  }
-  
+    dispatch(greetingsRequest());
+  };
+
   return (
     <div className={style.container}>
-      {loading && <div className={style.loader}></div>}
+      {loading && <div className={style.loader} />}
       {error && <p>Error!</p>}
       <h1>{!loading && greeting}</h1>
-      {!loading && <button className={style.button1} onClick={handler}>Refresh</button>}
+      {!loading && <button type="button" className={style.button1} onClick={handler}>Refresh</button>}
     </div>
-  )
+  );
 }
