@@ -10,7 +10,7 @@
 # 📗 Table of Contents
 
 - [📖 About the Project](#about-project)
-  - [Back-End](#-back-end-)
+  - [Back-End](#back-end)
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
