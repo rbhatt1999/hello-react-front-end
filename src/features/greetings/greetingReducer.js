@@ -1,27 +1,27 @@
-import { createSlice,createAsyncThunk } from "@reduxjs/toolkit";
-import Axios from "axios";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import Axios from 'axios';
 
 export const greetingsRequest = createAsyncThunk(
-  "greetings/greetingsRequest",
+  'greetings/greetingsRequest',
   async () => {
-    const response = await Axios.get("http://localhost:3000/greetings");
-    const {greeting} = response.data;
+    const response = await Axios.get('http://localhost:3000/greetings');
+    const { greeting } = response.data;
     return greeting;
-  }
+  },
 );
 
 const initialState = {
-  greeting: "",
+  greeting: '',
   loading: false,
   error: false,
 };
 
 const greetingSlice = createSlice({
-  name: "greeting",
+  name: 'greeting',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(greetingsRequest.pending, (state, action) => {
+    builder.addCase(greetingsRequest.pending, (state) => {
       const newState = { ...state, loading: true };
       return newState;
     });
@@ -29,11 +29,11 @@ const greetingSlice = createSlice({
       const newState = { ...state, loading: false, greeting: action.payload };
       return newState;
     });
-    builder.addCase(greetingsRequest.rejected, (state, action) => {
+    builder.addCase(greetingsRequest.rejected, (state) => {
       const newState = { ...state, loading: false, error: true };
       return newState;
     });
-  }
+  },
 });
 
 export default greetingSlice.reducer;
